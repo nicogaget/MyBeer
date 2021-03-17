@@ -3,13 +3,13 @@ import React, { Component } from "react";
 export default class BeerElement extends Component {
   render() {
     return (
-      <div className="w-50 p-2">
+      <div className="beer-element p-2 " >
         <li className="card text-center carouse-item border-secondary">
         <div
           className="card-body p-2 d-flex flex-column"
           
         >
-          <h2 className="card-header mb-auto ">Iron Maiden Trooper - 33cl</h2>
+          <h3 className="card-header mb-auto ">Iron Maiden Trooper - 33cl</h3>
           <img
             className="img-fluid p-2 mt-auto"
             alt="bière"

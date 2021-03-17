@@ -4,7 +4,7 @@ import BeerElement from "./BeerElement";
 export default class BeerList extends Component {
   render() {
     return (
-      <div className="w-75 d-flex flex-row flex-wrap align-content-start">
+      <div className="w-75 d-flex flex-wrap justify-content-center">
         <BeerElement/>
         <BeerElement/>
         <BeerElement/>

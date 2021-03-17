@@ -2,4 +2,11 @@ body {
 
   min-height: 100vh;
 }
+.beer-element{
+  width: 270px;
+  
+}
+.beer-details-img{
+  min-width: 150px;
+}
 

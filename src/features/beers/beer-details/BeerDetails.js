@@ -6,8 +6,8 @@ export default class BeerDetails extends Component {
       <div className="w-25 border p-4 d-flex flex-column">
         <h5>{this.props.beer.name}</h5>
         <hr className="w-100"/>
-        <div>
-          <img className="d-block mx-auto" alt="beer" src={this.props.beer.img}/>
+        <div className="">
+          <img className=" mx-auto img-thumbnail beer-details-img"  alt="beer" src={this.props.beer.img}/>
         </div>
         <hr className="w-100"/>
         <span className="text-secondary">{this.props.beer.details}</span>
