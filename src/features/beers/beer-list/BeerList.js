@@ -11,7 +11,7 @@ export default class BeerList extends Component {
         <BeerElement/>
         <BeerElement/>
         <BeerElement/>
-        <BeerElement/>
+        
         
       </div>
     );
