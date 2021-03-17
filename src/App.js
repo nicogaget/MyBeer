@@ -1,11 +1,15 @@
-import './App.css';
-
+import "./App.css";
+import BeerDetails from "./features/beers/beer-details/BeerDetails";
+import BeerList from "./features/beers/beer-list/BeerList";
+import { Navbar } from "./components";
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <h1>MyApp</h1>
-        </header>
+      <Navbar />
+      <div className="d-flex flex-row">
+        <BeerList />
+        <BeerDetails />
+      </div>
     </div>
   );
 }
