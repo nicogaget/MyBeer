@@ -10,3 +10,10 @@ apiBeer.interceptors.request.use((req) => {
 });
 
 export default apiBeer;
+
+export const apiBeerMap = (b) => ({
+  img: b.img,
+  name: b.name,
+  details: b.alcool + "° Alc | " + b.color + " | " + b.country,
+  description: b.appearance,
+});

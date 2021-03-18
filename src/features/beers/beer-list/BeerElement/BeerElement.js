@@ -1,27 +1,27 @@
 import React, { Component } from "react";
-import Style from './MovieElement.module.scss'
+import Style from "./MovieElement.module.scss";
 
 export default class BeerElement extends Component {
   mouseEnter = () => {
     this.props.updateSelectedBeer(this.props.beer.name);
-    
   };
-  
+
   render() {
     return (
-      <div onMouseEnter={this.mouseEnter} className={"beer-element p-2 "+Style.container}>
+      <div
+        onMouseEnter={this.mouseEnter}
+        className={"beer-element p-2 " + Style.container}
+      >
         <li className="card text-center carouse-item border-secondary">
           <div className="card-body p-2 d-flex flex-column">
             <h3 className="card-header mb-auto ">{this.props.beer.name}</h3>
             <img
-            
               className="img-fluid p-2 mt-auto"
               alt="Une bière"
               src={this.props.beer.img}
             />
           </div>
           <div className="card-footer d-flex justify-content-center m-0">
-            
             <div className="">{this.props.beer.details}</div>
           </div>
         </li>
