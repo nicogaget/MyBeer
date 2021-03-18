@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import BeerElement from "./BeerElement";
+import BeerElement from "./BeerElement/BeerElement";
 
 export default class BeerList extends Component {
   render() {
