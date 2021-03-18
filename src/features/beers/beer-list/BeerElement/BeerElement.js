@@ -6,6 +6,7 @@ export default class BeerElement extends Component {
     this.props.updateSelectedBeer(this.props.beer.name);
     
   };
+  
   render() {
     return (
       <div onMouseEnter={this.mouseEnter} className={"beer-element p-2 "+Style.container}>
@@ -19,9 +20,9 @@ export default class BeerElement extends Component {
               src={this.props.beer.img}
             />
           </div>
-          <div className="card-footer row row-cols-2 m-0">
-            <div className="col-md-6"></div>
-            <div className="col-md-6">{this.props.beer.details}</div>
+          <div className="card-footer d-flex justify-content-center m-0">
+            
+            <div className="">{this.props.beer.details}</div>
           </div>
         </li>
         {/* <div className="border d-flex">

@@ -3,8 +3,7 @@ import BeerDetails from "./features/beers/beer-details/BeerDetails";
 import BeerList from "./features/beers/beer-list/BeerList";
 import { Navbar, Loading } from "./components";
 import { Component } from "react";
-import dataBeers from './data'
-import apiBeer from './conf/apiBeer'
+import apiBeer from "./conf/apiBeer";
 class App extends Component {
   constructor(props) {
     super(props);
@@ -13,19 +12,31 @@ class App extends Component {
       selectedBeer: 0,
       loaded: false,
     };
-    setTimeout(()=>{
-      this.setState({
-        beers: dataBeers,
-        loaded:true
-      })
-    },1000)
+    
   }
 
-  componentDidMount(){
-    apiBeer.get ('http://127.0.0.1:8000/api/beers')
-    .then(response=> console.log(response.data["hydra:member"]))
-    .catch(err => console.log(err))
+  componentDidMount() {
+    apiBeer
+      .get("/beers")
+      .then((response) => response.data["hydra:member"])
+      .then((beersApi) => {
+        const beers = beersApi.map((b) => ({
+          img: b.img,
+          name: b.name,
+          details: b.alcool + "° Alc | " + b.color + " | " + b.country,
+          description: b.appearance,
+        }));
+        this.updateBeers(beers);
+      })
+      .catch((err) => console.log(err));
   }
+
+  updateBeers = (beers) => {
+    this.setState({
+      beers,
+      loaded: true,
+    });
+  };
 
   updateSelectedBeer = (index) => {
     this.setState({
