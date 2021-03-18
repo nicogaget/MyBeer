@@ -4,6 +4,7 @@ import BeerList from "./features/beers/beer-list/BeerList";
 import { Navbar, Loading } from "./components";
 import { Component } from "react";
 import dataBeers from './data'
+import apiBeer from './conf/apiBeer'
 class App extends Component {
   constructor(props) {
     super(props);
@@ -18,6 +19,12 @@ class App extends Component {
         loaded:true
       })
     },1000)
+  }
+
+  componentDidMount(){
+    apiBeer.get ('http://127.0.0.1:8000/api/beers')
+    .then(response=> console.log(response.data["hydra:member"]))
+    .catch(err => console.log(err))
   }
 
   updateSelectedBeer = (index) => {
