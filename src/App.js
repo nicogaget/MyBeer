@@ -69,10 +69,8 @@ class App extends Component {
     };
   }
 
-  updateSelectedBeer = (name) => {
-    const index = this.state.beers.findIndex((b) => {
-      return name === b.name;
-    });
+  updateSelectedBeer = (index) => {
+    
     this.setState({
       selectedBeer: index,
     });
