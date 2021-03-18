@@ -1,6 +1,5 @@
 import "./App.css";
-import BeerDetails from "./features/beers/beer-details/BeerDetails";
-import BeerList from "./features/beers/beer-list/BeerList";
+import {BeerList, BeerDetails, SearchBar} from './features/beers'
 import { Navbar, Loading } from "./components";
 import { Component } from "react";
 import apiBeer from "./conf/apiBeer";
@@ -48,6 +47,7 @@ class App extends Component {
     return (
       <div className="App d-flex flex-column">
         <Navbar />
+        <SearchBar updateBeers={this.updateBeers}/>
         {this.state.loaded ? (
           <div className=" d-flex flex-row flex-fill pt-4 p-2">
             <BeerList
