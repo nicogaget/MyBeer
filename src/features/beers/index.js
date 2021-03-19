@@ -1,4 +1,34 @@
-export { default as BeerDetails } from "./beer-details/BeerDetails";
-export { default as BeerList } from "./beer-list/BeerList";
-export { default as BeerElement } from "./beer-list/BeerElement/BeerElement";
-export { default as SearchBar } from "./search-bar/SearchBar";
+import React from "react";
+import { BeerList, BeerDetails, SearchBar } from "./components";
+import Loading from "../../components/utils/Loading";
+
+export default (props) => {
+  return (
+    <>
+      <h1>tets</h1>
+      {console.log(props)}
+      <SearchBar
+        updateBeers={props.updateBeers}
+        handleChange={props.handleChange}
+        search={props.search}
+      />
+      {props.loaded ? (
+        <div className=" d-flex flex-row flex-fill pt-4 p-2">
+          {props.beers.length !== 0 ? (
+            <>
+              <BeerList
+                beers={props.beers}
+                updateSelectedBeer={props.updateSelectedBeer}
+              />
+              <BeerDetails beer={props.beers[props.selectedBeer]} />
+            </>
+          ) : (
+            "no beers"
+          )}
+        </div>
+      ) : (
+        <Loading />
+      )}
+    </>
+  );
+};

@@ -1,6 +1,6 @@
 import { Formik } from "formik";
 import React, { Component } from "react";
-import apiBeer, { apiBeerMap } from "../../../conf/apiBeer";
+import apiBeer, { apiBeerMap } from "../../../../conf/apiBeer";
 
 export default class SearchBar extends Component {
   submit = (values, actions) => {

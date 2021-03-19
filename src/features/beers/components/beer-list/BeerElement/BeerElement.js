@@ -2,14 +2,14 @@ import React, { Component } from "react";
 import Style from "./MovieElement.module.scss";
 
 export default class BeerElement extends Component {
-  mouseEnter = () => {
+  onClick = () => {
     this.props.updateSelectedBeer(this.props.beer.name);
   };
 
   render() {
     return (
       <div
-        onMouseEnter={this.mouseEnter}
+        onClick={this.onClick}
         className={"beer-element p-2 " + Style.container}
       >
         <li className="card text-center carouse-item border-secondary">
