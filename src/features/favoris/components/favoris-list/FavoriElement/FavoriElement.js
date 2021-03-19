@@ -1,47 +1,29 @@
 import React, { Component } from "react";
-import Style from "./BeerElement.module.scss";
-export default class BeerElement extends Component {
-  onClick = () => {
-    this.props.updateSelectedBeer(this.props.beer.name);
-  };
 
+export default class FavoriElement extends Component {
   render() {
     return (
-      <div
-        onClick={this.onClick}
-        className={"beer-element p-2 " + Style.container}
-      >
+      <div className="beer-element p-2 ">
         <li className="card text-center carouse-item border-secondary">
           <div className="card-body p-2 d-flex flex-column">
-            <h3 className="card-header mb-auto ">{this.props.beer.name}</h3>
+            <h3 className="card-header mb-auto ">{this.props.favori.name}</h3>
             <img
               className="img-fluid p-2 mt-auto"
               alt="Une bière"
-              src={this.props.beer.img}
+              src={this.props.favori.img}
             />
           </div>
           <div className="card-footer d-flex justify-content-center m-0">
-            <div className="">{this.props.beer.details}</div>
+            <div className="">{this.props.favori.details}</div>
             <div className="d-flex -flex-row justify-content-end">
-              {this.props.isFavori ? (
-                <button
-                  onClick={() => {
-                    this.props.removeFavori(this.props.beer.name);
-                  }}
-                  className="btn btn-danger"
-                >
-                  Remove
-                </button>
-              ) : (
-                <button
-                  onClick={() => {
-                    this.props.addFavori(this.props.beer.name);
-                  }}
-                  className="btn btn-primary"
-                >
-                  Add
-                </button>
-              )}
+              <button
+                onClick={() => {
+                  this.props.removeFavori(this.props.favori.name);
+                }}
+                className="btn btn-danger"
+              >
+                Remove
+              </button>
             </div>
           </div>
         </li>

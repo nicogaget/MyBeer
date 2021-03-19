@@ -5,10 +5,11 @@ export default class NavBar extends Component {
   render() {
     return <header className="navbar navbar-expand-lg navbar-dark bg-dark">
     <a className="navbar-brand" href="/"> TITLE</a>
-    <button className="navbar-toggler">
+    {/* <button className="navbar-toggler">
       <span className="navbar-toggler-icon"></span>
     </button>
-    <div className="collapse navbar-collapse">
+    <div className="collapse navbar-collapse"> */}
+    <div className="navbar navbar-expand">
     <ul className="navbar-nav ml-auto">
       <li className="nav-item ">
         <NavLink to="/beers" href="/" className="nav-link" activeClassName="active">Home</NavLink>

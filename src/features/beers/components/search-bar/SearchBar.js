@@ -9,7 +9,7 @@ export default class SearchBar extends Component {
       Object.keys(values)
         .map((k) => (values[k] ? `${k}=${values[k]}&` : ""))
         .join("");
-        apiBeer
+    apiBeer
       .get("/beers" + query)
       .then((response) => response.data["hydra:member"])
       .then((beersApi) => {
@@ -20,7 +20,6 @@ export default class SearchBar extends Component {
       .catch((err) => console.log(err));
   };
 
-  
   render() {
     return (
       <>
@@ -31,7 +30,6 @@ export default class SearchBar extends Component {
           {({ handleSubmit, handleChange, handleBlur, isSubmitting }) => (
             <form className="d-flex p-2 m-2 flex-row" onSubmit={handleSubmit}>
               <input
-              
                 name="name"
                 className="flex-fill form-control "
                 placeholder="recherce ..."

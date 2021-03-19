@@ -1,14 +1,14 @@
 import { Component } from "react";
-import "./App.css";
-import { Navbar } from "./components";
-import Beers from "./features/beers";
-import apiBeer, { apiBeerMap } from "./conf/apiBeer";
 import {
   BrowserRouter as Router,
+  Redirect,
   Route,
   Switch,
-  Redirect,
 } from "react-router-dom";
+import "./App.css";
+import { Navbar } from "./components";
+import apiBeer, { apiBeerMap } from "./conf/apiBeer";
+import Beers from "./features/beers";
 import Favoris from "./features/favoris";
 class App extends Component {
   constructor(props) {
@@ -18,6 +18,7 @@ class App extends Component {
       selectedBeer: 0,
       loaded: false,
       search: "",
+      favoris: [],
     };
   }
 
@@ -59,6 +60,20 @@ class App extends Component {
     });
   };
 
+  addFavori = (name) => {
+    const beer = { ...this.state.beers.find((m) => m.name === name) };
+    this.setState((state) => ({
+      favoris: [...this.state.favoris, beer],
+    }));
+  };
+
+  removeFavori = (name) => {
+    const index = this.state.favoris.findIndex((f) => f.name === name);
+    this.setState((state) => ({
+      favoris: state.favoris.filter((_, i) => i !== index),
+    }));
+  };
+
   render() {
     return (
       <Router>
@@ -78,11 +93,25 @@ class App extends Component {
                     handleChange={this.handleChange}
                     search={this.search}
                     selectedBeer={this.state.selectedBeer}
+                    addFavori={this.addFavori}
+                    removeFavori={this.removeFavori}
+                    favoris={this.state.favoris.map((f) => f.name)}
                   />
                 );
               }}
             />
-            <Route path="/favoris" component={Favoris} />
+            <Route
+              path="/favoris"
+              render={(props) => {
+                return (
+                  <Favoris
+                    {...props}
+                    favoris={this.state.favoris}
+                    removeFavori={this.removeFavori}
+                  />
+                );
+              }}
+            />
             <Redirect path="/beers" />
           </Switch>
         </div>

@@ -7,10 +7,13 @@ export default class BeerList extends Component {
       <div>
         <div className="w-75 d-flex flex-wrap justify-content-center">
           {this.props.beers.length > 0
-            ? this.props.beers.map((m, index) => (
+            ? this.props.beers.map((b, index) => (
                 <BeerElement
-                  key={m.name + index}
-                  beer={m}
+                  key={b.name + index}
+                  isFavori={this.props.favoris.includes(b.name)}
+                  beer={b}
+                  addFavori={this.props.addFavori}
+                  removeFavori={this.props.removeFavori}
                   updateSelectedBeer={() => {
                     this.props.updateSelectedBeer(index);
                   }}

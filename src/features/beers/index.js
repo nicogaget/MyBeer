@@ -19,6 +19,9 @@ export default (props) => {
               <BeerList
                 beers={props.beers}
                 updateSelectedBeer={props.updateSelectedBeer}
+                favoris={props.favoris}
+                removeFavori={props.removeFavori}
+                addFavori={props.addFavori}
               />
               <BeerDetails beer={props.beers[props.selectedBeer]} />
             </>
