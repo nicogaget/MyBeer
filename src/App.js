@@ -131,13 +131,14 @@ class App extends Component {
                 return (
                   <Favoris
                     {...props}
+                    loaded={this.state.loaded}
                     favoris={this.state.favoris}
                     removeFavori={this.removeFavori}
                   />
                 );
               }}
             />
-            <Redirect path="/beers" />
+            <Redirect to="/beers" />
           </Switch>
         </div>
       </Router>

@@ -5,7 +5,6 @@ import Loading from "../../components/utils/Loading";
 export default (props) => {
   return (
     <>
-      <h1>tets</h1>
       <SearchBar
         updateBeers={props.updateBeers}
         handleChange={props.handleChange}

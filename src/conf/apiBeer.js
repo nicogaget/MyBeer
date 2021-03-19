@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const apiBeer = axios.create({
+export const apiBeer = axios.create({
   baseURL: "http://127.0.0.1:8000/api",
 });
 
@@ -9,7 +9,7 @@ apiBeer.interceptors.request.use((req) => {
   return req;
 });
 
-export default apiBeer;
+
 
 export const apiBeerMap = (b) => ({
   img: b.img,
@@ -17,3 +17,18 @@ export const apiBeerMap = (b) => ({
   details: b.alcool + "° Alc | " + b.color + " | " + b.country,
   description: b.appearance,
 });
+
+export default {
+  searchBeers: (filter) => {
+    const query =
+      "?" +
+      Object.keys(filter)
+        .map((k) => `${k}=${filter[k]}&`)
+        .join("");
+
+    return apiBeer
+      .get("search/beer" + query)
+      .then((response) => response.data.results)
+      .then((beersApi) => beersApi.map(apiBeerMap));
+  },
+};

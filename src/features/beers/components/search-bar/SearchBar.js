@@ -41,14 +41,17 @@ export default class SearchBar extends Component {
                 onChange={handleChange}
                 onBlur={handleBlur}
                 className="mx-2"
+                defaultValue={'DEFAULT'}
+                
               >
-                <option selected disabled>
+                <option disabled value="DEFAULT" >
                   Pays
                 </option>
                 <option value="france">France</option>
                 <option value="belgique">Belgique</option>
                 <option value="allemagne">Allemagne</option>
                 <option value="angleterre">Angleterre</option>
+                <option value="">Tous</option>
               </select>
 
               <button
