@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { NavLink } from "react-router-dom";
 
 export default class NavBar extends Component {
   render() {
@@ -9,12 +10,12 @@ export default class NavBar extends Component {
     </button>
     <div className="collapse navbar-collapse">
     <ul className="navbar-nav ml-auto">
-      {/* <li className="nav-item ">
-        <NavLink to="/films" href="/" className="nav-link" activeClassName="active">Home</NavLink>
+      <li className="nav-item ">
+        <NavLink to="/beers" href="/" className="nav-link" activeClassName="active">Home</NavLink>
       </li>
       <li className="nav-item ">
         <NavLink to="/favoris" href="/" className="nav-link" activeClassName="active">Favoris</NavLink>
-      </li> */}
+      </li>
     </ul>
     </div>
     

@@ -1,7 +1,7 @@
 import React from "react";
 import { BeerList, BeerDetails, SearchBar } from "./components";
 import Loading from "../../components/utils/Loading";
-
+// eslint-disable-next-line
 export default (props) => {
   return (
     <>

@@ -1,9 +1,15 @@
 import { Component } from "react";
 import "./App.css";
 import { Navbar } from "./components";
-import Beers from './features/beers'
+import Beers from "./features/beers";
 import apiBeer, { apiBeerMap } from "./conf/apiBeer";
-
+import {
+  BrowserRouter as Router,
+  Route,
+  Switch,
+  Redirect,
+} from "react-router-dom";
+import Favoris from "./features/favoris";
 class App extends Component {
   constructor(props) {
     super(props);
@@ -55,19 +61,32 @@ class App extends Component {
 
   render() {
     return (
-      <div className="App d-flex flex-column">
-        <Navbar />
-        <Beers 
-          loaded={ this.state.loaded}
-          updateBeers ={this.updateBeers}
-          updateSelectedBeer={this.updateSelectedBeer}
-          beers={this.state.beers}
-          handleChange={this.handleChange}
-          search={this.search}
-          selectedBeer={this.state.selectedBeer}
-        />
-        
-      </div>
+      <Router>
+        <div className="App d-flex flex-column">
+          <Navbar />
+          <Switch>
+            <Route
+              path="/beers"
+              render={(props) => {
+                return (
+                  <Beers
+                    {...props}
+                    loaded={this.state.loaded}
+                    updateBeers={this.updateBeers}
+                    updateSelectedBeer={this.updateSelectedBeer}
+                    beers={this.state.beers}
+                    handleChange={this.handleChange}
+                    search={this.search}
+                    selectedBeer={this.state.selectedBeer}
+                  />
+                );
+              }}
+            />
+            <Route path="/favoris" component={Favoris} />
+            <Redirect path="/beers" />
+          </Switch>
+        </div>
+      </Router>
     );
   }
 }
