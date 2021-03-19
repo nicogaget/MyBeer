@@ -8,6 +8,7 @@ import {
 import "./App.css";
 import { Navbar } from "./components";
 import apiBeer, { apiBeerMap } from "./conf/apiBeer";
+import apiFireBase from "./conf/apiFireBase";
 import Beers from "./features/beers";
 import Favoris from "./features/favoris";
 class App extends Component {
@@ -32,12 +33,26 @@ class App extends Component {
         this.updateBeers(beers);
       })
       .catch((err) => console.log(err));
+
+    apiFireBase
+      .get("favoris.json")
+      .then((response) => {
+        let favoris = response.data ? response.data : [];
+        this.updatefavori(favoris);
+      })
+      .catch((err) => console.log(err.response));
   }
 
   updateBeers = (beers) => {
     this.setState({
       beers,
-      loaded: true,
+      loaded: this.state.favoris ? true : false,
+    });
+  };
+  updatefavori = (favoris) => {
+    this.setState({
+      favoris,
+      loaded: this.state.beers ? true : false,
     });
   };
 
@@ -62,16 +77,26 @@ class App extends Component {
 
   addFavori = (name) => {
     const beer = { ...this.state.beers.find((m) => m.name === name) };
-    this.setState((state) => ({
-      favoris: [...this.state.favoris, beer],
-    }));
+    this.setState(
+      (state) => ({
+        favoris: [...this.state.favoris, beer],
+      }),
+      this.saveFavori
+    );
   };
 
   removeFavori = (name) => {
     const index = this.state.favoris.findIndex((f) => f.name === name);
-    this.setState((state) => ({
-      favoris: state.favoris.filter((_, i) => i !== index),
-    }));
+    this.setState(
+      (state) => ({
+        favoris: state.favoris.filter((_, i) => i !== index),
+      }),
+      this.saveFavori
+    );
+  };
+
+  saveFavori = () => {
+    apiFireBase.put("favoris.json", this.state.favoris);
   };
 
   render() {

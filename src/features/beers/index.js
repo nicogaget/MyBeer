@@ -6,7 +6,6 @@ export default (props) => {
   return (
     <>
       <h1>tets</h1>
-      {console.log(props)}
       <SearchBar
         updateBeers={props.updateBeers}
         handleChange={props.handleChange}
