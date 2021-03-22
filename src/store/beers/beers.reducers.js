@@ -31,7 +31,7 @@ export default (
         error: action.error,
       };
     }
-    case actions.SET_SELECTED_BEERS: {
+    case actions.SET_SELECTED_BEER: {
       return {
         ...state,
         selectedBeer: action.index,

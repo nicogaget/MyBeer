@@ -2,24 +2,23 @@ import React, { Component } from "react";
 
 export default class FavoriElement extends Component {
   render() {
+    const {favori}= this.props
     return (
       <div className="beer-element p-2 ">
         <li className="card text-center carouse-item border-secondary">
           <div className="card-body p-2 d-flex flex-column">
-            <h3 className="card-header mb-auto ">{this.props.favori.name}</h3>
+            <h3 className="card-header mb-auto ">{favori.name}</h3>
             <img
               className="img-fluid p-2 mt-auto"
               alt="Une bière"
-              src={this.props.favori.img}
+              src={favori.img}
             />
           </div>
           <div className="card-footer d-flex justify-content-center m-0">
-            <div className="">{this.props.favori.details}</div>
+            <div className="">{favori.details}</div>
             <div className="d-flex -flex-row justify-content-end">
               <button
-                onClick={() => {
-                  this.props.removeFavori(this.props.favori.name);
-                }}
+                onClick={this.props.removeFavori}
                 className="btn btn-danger"
               >
                 Remove

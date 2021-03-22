@@ -1,35 +1,54 @@
 import React from "react";
-import { BeerList, BeerDetails, SearchBar } from "./components";
+import { connect } from "react-redux";
 import Loading from "../../components/utils/Loading";
+import {
+  fetchBeers,
+  setSelectedBeer,
+  tryAddFavori,
+  tryRemoveFavori,
+} from "../../store/actions";
+import {
+  favorisListNameSelector,
+  beersIsLoadingSelector,
+  beersListSelector,
+  beersSelectedBeerSelector,
+} from "../../store/selectors";
+
+import { BeerDetails, BeerList, SearchBar } from "./components";
 // eslint-disable-next-line
-export default (props) => {
+const Beers = (props) => {
   return (
     <>
-      <SearchBar
-        updateBeers={props.updateBeers}
-        handleChange={props.handleChange}
-        search={props.search}
-      />
-      {props.loaded ? (
-        <div className=" d-flex flex-row flex-fill pt-4 p-2">
-          {props.beers.length !== 0 ? (
-            <>
-              <BeerList
-                beers={props.beers}
-                updateSelectedBeer={props.updateSelectedBeer}
-                favoris={props.favoris}
-                removeFavori={props.removeFavori}
-                addFavori={props.addFavori}
-              />
-              <BeerDetails beer={props.beers[props.selectedBeer]} />
-            </>
-          ) : (
-            "no beers"
-          )}
-        </div>
-      ) : (
+      
+      <SearchBar fetchBeers={props.fetchBeers} />
+      {props.isLoading ? (
         <Loading />
+      ) : (
+        <div className=" d-flex flex-row flex-fill pt-4 p-2">
+          <BeerList
+            beers={props.beers}
+            updateSelectedBeer={props.setSelectedBeer}
+            favoris={props.favorisListName}
+            removeFavori={props.tryRemoveFavori}
+            addFavori={props.tryAddFavori}
+          />
+          <BeerDetails beer={props.selectedBeer} />
+        </div>
       )}
     </>
   );
 };
+export default connect(
+  (state) => ({
+    isLoding: beersIsLoadingSelector(state),
+    beers: beersListSelector(state),
+    favorisListName: favorisListNameSelector(state),
+    selectedBeer: beersSelectedBeerSelector(state),
+  }),
+  {
+    fetchBeers,
+    setSelectedBeer,
+    tryRemoveFavori,
+    tryAddFavori,
+  }
+)(Beers);

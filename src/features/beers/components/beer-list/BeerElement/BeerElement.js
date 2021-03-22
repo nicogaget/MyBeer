@@ -35,7 +35,7 @@ export default class BeerElement extends Component {
               ) : (
                 <button
                   onClick={() => {
-                    this.props.addFavori(this.props.beer.name);
+                    this.props.addFavori(this.props.beer);
                   }}
                   className="btn btn-primary"
                 >

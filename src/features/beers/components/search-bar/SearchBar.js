@@ -1,23 +1,10 @@
 import { Formik } from "formik";
 import React, { Component } from "react";
-import apiBeer, { apiBeerMap } from "../../../../conf/apiBeer";
 
 export default class SearchBar extends Component {
   submit = (values, actions) => {
-    const query =
-      "?" +
-      Object.keys(values)
-        .map((k) => (values[k] ? `${k}=${values[k]}&` : ""))
-        .join("");
-    apiBeer
-      .get("/beers" + query)
-      .then((response) => response.data["hydra:member"])
-      .then((beersApi) => {
-        const beers = beersApi.map(apiBeerMap);
-        this.props.updateBeers(beers);
-        actions.setSubmitting(false);
-      })
-      .catch((err) => console.log(err));
+    this.props.fetchBeers(values)
+    .then(()=> actions.setSubmitting(false));
   };
 
   render() {
@@ -25,7 +12,7 @@ export default class SearchBar extends Component {
       <>
         <Formik
           onSubmit={this.submit}
-          initialValues={{ name: "", country: "" }}
+          initialValues={{ name: "", country:"" }}
         >
           {({ handleSubmit, handleChange, handleBlur, isSubmitting }) => (
             <form className="d-flex p-2 m-2 flex-row" onSubmit={handleSubmit}>
@@ -41,10 +28,9 @@ export default class SearchBar extends Component {
                 onChange={handleChange}
                 onBlur={handleBlur}
                 className="mx-2"
-                defaultValue={'DEFAULT'}
-                
+                defaultValue={"DEFAULT"}
               >
-                <option disabled value="DEFAULT" >
+                <option disabled value="DEFAULT">
                   Pays
                 </option>
                 <option value="france">France</option>

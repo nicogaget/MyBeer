@@ -10,7 +10,7 @@ export default class BeerList extends Component {
             <BeerElement
               key={f.name + index}
               favori={f}
-              removeFavori={this.props.removeFavori}
+              removeFavori={()=> this.props.removeFavori(f.name)}
             />
           ))}
         </div>
