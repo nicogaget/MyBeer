@@ -15,7 +15,7 @@ apiBeer.interceptors.request.use((req) => {
 export const apiBeerMap = (b) => (
   {
   name: b.name,
-  details: b.alcool + "° Alc | " + b.color + " | " + b.country,
+  details: b.alcool + " Alc | " + b.color + " | " + b.country,
   description: b.appearance,
   img: b.img 
 }) ;

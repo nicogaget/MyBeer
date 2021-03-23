@@ -3,10 +3,10 @@ import React, { Component } from "react";
 export default class BeerDetails extends Component {
   render() {
     return (
-      <div className="w-25 border p-4 d-flex flex-column">
+      <div className="w-25 border p-4 d-flex flex-column text-center ">
         {this.props.beer ? (
           <>
-            <h5>{this.props.beer.name}</h5>
+            <h5 >{this.props.beer.name}</h5>
             <hr className="w-100" />
             <div className="">
               <img
@@ -16,7 +16,7 @@ export default class BeerDetails extends Component {
               />
             </div>
             <hr className="w-100" />
-            <span className="text-secondary">{this.props.beer.details}</span>
+            <span className="text-secondary ">{this.props.beer.details}</span>
             <span>{this.props.beer.description}</span>
           </>
         ) : null}

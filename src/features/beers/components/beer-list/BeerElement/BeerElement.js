@@ -13,9 +13,9 @@ export default class BeerElement extends Component {
         onClick={this.onClick}
         className={"beer-element p-2 " + Style.container}
       >
-        <li className="card text-center carouse-item border-secondary">
+        <li className="card text-center border-secondary element-card">
           <div className="card-body p-2 d-flex flex-column">
-            <h3 className="card-header mb-auto">{this.props.beer.name}</h3>
+            <h3 className="card-header ">{this.props.beer.name}</h3>
             <img
               className="img-fluid p-2 mt-auto"
               alt="Une bière"

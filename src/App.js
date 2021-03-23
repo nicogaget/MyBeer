@@ -1,9 +1,9 @@
 import { Component, lazy, Suspense } from "react";
 import { connect } from "react-redux";
 import { Redirect, Route, Switch, withRouter } from "react-router-dom";
-import "./App.css";
 import { Navbar } from "./components";
 import { fetchFavoris } from "./store/actions";
+import "./Style/App.scss";
 
 const LazyBeers = lazy(() => import("./features/beers"));
 const LazyFavoris = lazy(() => import("./features/favoris"));
