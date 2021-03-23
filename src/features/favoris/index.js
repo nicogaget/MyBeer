@@ -11,7 +11,7 @@ const favoris = (props) => {
   return (
     
     <div className=" d-flex flex-row flex-fill pt-4 p-2">
-      {console.log(props)}
+     
       {props.isLoading ? (
         <Loading />
       ) : (
