@@ -9,3 +9,9 @@
     transition: all 0.3s;
   }
 }
+.icon{
+  color: #E2DCCD;
+color: -moz-linear-gradient(top, #E2DCCD 0%, #EE7E01 26%, #EEB81A 100%);
+color:  -webkit-linear-gradient(top, #E2DCCD 0%, #EE7E01 26%, #EEB81A 100%);
+color: linear-gradient(to bottom, #E2DCCD 0%, #EE7E01 26%, #EEB81A 100%);
+}

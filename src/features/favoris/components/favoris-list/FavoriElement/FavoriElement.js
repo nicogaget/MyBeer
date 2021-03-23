@@ -17,32 +17,20 @@ export default class FavoriElement extends Component {
           <div className="card-footer d-flex justify-content-center m-0">
             <div className="">{favori.details}</div>
             <div className="d-flex -flex-row justify-content-end">
-              <button
-                onClick={this.props.removeFavori}
-                className="btn btn-danger"
-              >
-                Remove
-              </button>
+            <img
+                  src="https://icon-library.com/images/beer-icon/beer-icon-6.jpg"
+                  alt="icon"
+                  className=""
+                  width="49"
+                  height="49"
+                  onClick={() => {
+                    this.props.removeFavori(this.props.favori.name);
+                  }}
+                />
             </div>
           </div>
         </li>
-        {/* <div className="border d-flex">
-          <img
-            
-            height="100"
-            alt="bière"
-            src="https://d33za54wpumlhy.cloudfront.net/eyJidWNrZXQiOiJzYXZldXJiaWVyZSIsImtleSI6ImltZy9wLzc3MzYtNDI4ODguanBnIiwiZWRpdHMiOnsid2VicCI6eyJxdWFsaXR5Ijo4MH0sInBuZyI6eyJxdWFsaXR5Ijo4MH0sInJlc2l6ZSI6eyJ3aWR0aCI6Nzg2LCJoZWlnaHQiOjU0MCwiZml0IjoiY29udGFpbiIsImJhY2tncm91bmQiOnsiciI6MCwiZyI6MCwiYiI6MCwiYWxwaGEiOjB9fX19"
-            className="img"
-          />
-          <div className="flex-fill d-flex flex-column p-3">
-            <h5>Iron Maiden Trooper - 33cl</h5>
-            <hr className="w-100" />
-            <p>
-              Robe blonde dorée plutôt classique surmontée toutefois d'une belle
-              mousse blanche.
-            </p>
-          </div>
-        </div> */}
+        
       </div>
     );
   }

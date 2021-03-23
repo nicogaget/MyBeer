@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import Style from "./BeerElement.module.scss";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faBeer } from "@fortawesome/free-solid-svg-icons";
 export default class BeerElement extends Component {
   onClick = () => {
     this.props.updateSelectedBeer(this.props.beer.name);
@@ -13,34 +15,36 @@ export default class BeerElement extends Component {
       >
         <li className="card text-center carouse-item border-secondary">
           <div className="card-body p-2 d-flex flex-column">
-            <h3 className="card-header mb-auto ">{this.props.beer.name}</h3>
+            <h3 className="card-header mb-auto">{this.props.beer.name}</h3>
             <img
               className="img-fluid p-2 mt-auto"
               alt="Une bière"
               src={this.props.beer.img}
             />
           </div>
-          <div className="card-footer d-flex justify-content-center m-0">
-            <div className="">{this.props.beer.details}</div>
-            <div className="d-flex -flex-row justify-content-end">
+          <div className="card-footer row d-flex justify-content-center m-0">
+            <div className="col-9">{this.props.beer.details}</div>
+            <div className="d-flex col-3 flex-row justify-content-end">
               {this.props.isFavori ? (
-                <button
+                <img
+                  src="https://icon-library.com/images/beer-icon/beer-icon-6.jpg"
+                  alt="icon"
+                  className=""
+                  width="49"
+                  height="49"
                   onClick={() => {
                     this.props.removeFavori(this.props.beer.name);
                   }}
-                  className="btn btn-danger"
-                >
-                  Remove
-                </button>
+                />
               ) : (
-                <button
+                <FontAwesomeIcon
+                  className={"ml-4 " + Style.icon}
+                  size="3x"
+                  icon={faBeer}
                   onClick={() => {
                     this.props.addFavori(this.props.beer);
                   }}
-                  className="btn btn-primary"
-                >
-                  Add
-                </button>
+                />
               )}
             </div>
           </div>
