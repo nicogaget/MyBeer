@@ -4,7 +4,7 @@ export const REQUEST_BEERS = "request beers";
 export const FETCH_BEERS = "fetch beers";
 export const FETCH_BEERS_SUCCESS = "fetch beers success";
 export const FETCH_BEERS_ERROR = "fetch beers error";
-export const SET_SELECTED_BEER = "set selected beers";
+export const SET_SELECTED_BEER = "set selected beer";
 
 export const requestBeers = () => ({
   type: REQUEST_BEERS,

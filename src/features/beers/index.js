@@ -19,7 +19,7 @@ import { BeerDetails, BeerList, SearchBar } from "./components";
 const Beers = (props) => {
   return (
     <>
-      
+      {console.log(props)}
       <SearchBar fetchBeers={props.fetchBeers} />
       {props.isLoading ? (
         <Loading />

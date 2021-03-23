@@ -3,7 +3,6 @@ import { connect } from "react-redux";
 import { Redirect, Route, Switch, withRouter } from "react-router-dom";
 import "./App.css";
 import { Navbar } from "./components";
-import favoris from "./features/favoris";
 import { fetchFavoris } from "./store/actions";
 
 const LazyBeers = lazy(() => import("./features/beers"));

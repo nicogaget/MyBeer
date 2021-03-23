@@ -17,6 +17,6 @@ export const beersSelectedBeerIndexSelector = createSelector(
   beers => beers.selectedBeer
 );
 export const beersSelectedBeerSelector = createSelector(
-  [beersSelector, beersSelectedBeerIndexSelector],
+  [beersListSelector, beersSelectedBeerIndexSelector],
   (beersData, index) => beersData[index]
 );

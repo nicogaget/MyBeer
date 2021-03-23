@@ -1,6 +1,6 @@
 import * as actions from "./beers.actions";
 // eslint-disable-next-line
-export default (
+const BeerReducer= (
   state = {
     data: [],
     isLoading: false,
@@ -42,3 +42,5 @@ export default (
     }
   }
 };
+
+export default BeerReducer
