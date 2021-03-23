@@ -5,7 +5,8 @@ export const apiBeer = axios.create({
 });
 
 apiBeer.interceptors.request.use((req) => {
-  //req.headers['Authorization'] = 'Bearer NOTRE_API_KEY'
+  const token = window.localStorage.getItem(["authToken"])
+  req.headers['Authorization'] = 'Bearer '+token
   req.headers.get["Accept"] = "Application/ld+json";
   return req;
 });

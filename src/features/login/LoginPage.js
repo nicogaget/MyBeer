@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import AuthApi from "../../conf/AuthApi";
 
-const LoginPage = (props) => {
+const LoginPage = ({onLogin}) => {
   const [credentials, setCredentials] = useState({
     username: "",
     password: "",
@@ -18,6 +18,7 @@ const LoginPage = (props) => {
     try {
       await AuthApi.authenticate(credentials);
       setError("");
+      onLogin(true)
     } catch (error) {
       setError("Aucun compte enregistré avec cette adresse email");
     }
