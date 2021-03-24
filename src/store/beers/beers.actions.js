@@ -1,4 +1,5 @@
-import apiBeerRequest from "../../conf/apiBeer";
+import apiBeerRequest from "../../services/apiBeer";
+import Cache from "../../services/cache";
 
 export const REQUEST_BEERS = "request beers";
 export const FETCH_BEERS = "fetch beers";
@@ -20,13 +21,16 @@ export const fetchBeersError = (error) => ({
   error,
 });
 
-export const fetchBeers = (filter) => (dispatch) => {
+export const fetchBeers = (filter) => async (dispatch) => {
   dispatch(requestBeers());
-  
+
+  const cachedBeers = await Cache.get("beers");
+  if (cachedBeers) return cachedBeers;
   return apiBeerRequest.searchBeers(filter).then(
-    
-    beers => dispatch(fetchBeersSuccess(beers)),
-    error => dispatch(fetchBeersError(error))
+    //response => console.log(response),
+    (beers) => (dispatch(fetchBeersSuccess(beers)),
+    Cache.set("beers", beers)),
+    (error) => dispatch(fetchBeersError(error))
   );
 };
 export const setSelectedBeer = (index) => ({

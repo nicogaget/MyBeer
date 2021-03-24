@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { NavLink } from "react-router-dom";
 import { toast } from "react-toastify";
-import AuthApi from "../../conf/AuthApi";
+import AuthApi from "../../services/AuthApi";
 import AuthContext from "../../context/AuthContext";
 
 const NavBar = ({ history }) => {

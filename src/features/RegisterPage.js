@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
 import Field from "../components/forms/Field";
-import UsersApi from "../conf/usersApi";
+import UsersApi from "../services/usersApi";
 
 const RegisterPage = ({ history }) => {
   const [user, setUser] = useState({

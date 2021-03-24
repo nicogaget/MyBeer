@@ -1,12 +1,13 @@
 import axios from "axios";
+import {BEERS_API} from "./config"
 
 export const apiBeer = axios.create({
-  baseURL: "http://127.0.0.1:8000/api",
+  baseURL: BEERS_API,
 });
 
 apiBeer.interceptors.request.use((req) => {
-  const token = window.localStorage.getItem(["authToken"])
-  req.headers['Authorization'] = 'Bearer '+token
+  const token = window.localStorage.getItem(["authToken"]);
+  req.headers["Authorization"] = "Bearer " + token;
   req.headers.get["Accept"] = "Application/ld+json";
   return req;
 });
@@ -28,7 +29,7 @@ export default {
         .join("");
 
     return apiBeer
-      .get("/beers" + query)
+      .get("" + query)
       .then((response) => response.data["hydra:member"])
       .then((beersApi) => beersApi.map(apiBeerMap));
   },

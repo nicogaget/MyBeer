@@ -1,7 +1,8 @@
 import * as axios from "axios";
+import {FAVORIS_API_URL} from './config'
 
 const apiFireBase = axios.create({
-  baseURL: "https://mybeerfavoris-default-rtdb.firebaseio.com/",
+  baseURL: FAVORIS_API_URL,
 });
 // eslint-disable-next-line 
 export default {

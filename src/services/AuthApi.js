@@ -1,8 +1,9 @@
 import axios from "axios";
 import jwtDecode from "jwt-decode";
+import {LOGIN_API} from './config'
 
 export const apiAuthentification = axios.create({
-  baseURL: "http://127.0.0.1:8000/api",
+  baseURL: LOGIN_API,
 });
 
 function logout() {
@@ -15,7 +16,7 @@ function setAxiosToken(token) {
 
 function authenticate(credentials) {
   return axios
-    .post("http://127.0.0.1:8000/api/login_check", credentials)
+    .post(LOGIN_API, credentials)
     .then((response) => response.data.token)
     .then((token) => {
       window.localStorage.setItem("authToken", token);

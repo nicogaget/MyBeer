@@ -1,7 +1,7 @@
 import React, { useContext, useState } from "react";
 import { toast } from "react-toastify";
 import Field from "../../components/forms/Field";
-import AuthApi from "../../conf/AuthApi";
+import AuthApi from "../../services/AuthApi";
 import AuthContext from "../../context/AuthContext";
 
 const LoginPage = ({ onLogin, history }) => {

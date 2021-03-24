@@ -1,4 +1,4 @@
-import apiFireBaseRequest from "../../conf/apiFireBase";
+import apiFireBaseRequest from "../../services/apiFireBase";
 
 export const REQUEST_FAVORIS = "request favoris";
 export const FETCH_MOVIE = "fetch favoris";
@@ -28,10 +28,12 @@ export const fetchFavorisError = (error) => ({
   error,
 });
 
-export const fetchFavoris = () => (dispatch) => {
+export const fetchFavoris = () => async (dispatch) => {
   dispatch(requestFavoris());
+  const cachedFavoris = await Cache.get("favoris")
+  if(cachedFavoris)return cachedFavoris;
   return apiFireBaseRequest.fetchFavoris().then(
-    (favoris) => dispatch(fetchFavorisSuccess(favoris)),
+    (favoris) => (dispatch(fetchFavorisSuccess(favoris))),
     (error) => dispatch(fetchFavorisError(error))
   );
 };

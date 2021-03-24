@@ -3,27 +3,23 @@ import { connect } from "react-redux";
 import { Redirect, Route, Switch, withRouter } from "react-router-dom";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { Navbar } from "./components";
-import { PrivateRoute } from "./components";
-import AuthApi from "./conf/AuthApi";
+import { Navbar, PrivateRoute } from "./components";
 import AuthContext from "./context/AuthContext";
 import LoginPage from "./features/login/LoginPage";
 import RegisterPage from "./features/RegisterPage";
-import { fetchFavoris } from "./store/actions";
+import AuthApi from "./services/AuthApi";
+import { fetchBeers, fetchFavoris } from "./store/actions";
 import "./Style/App.scss";
+
 const LazyBeers = lazy(() => import("./features/beers"));
 const LazyFavoris = lazy(() => import("./features/favoris"));
 
 AuthApi.setup();
 
 const App = () => {
-  // componentDidMount() {
-  //   this.props.fetchFavoris();
-  // }
   const [isAuthenticated, setIsAuthenticated] = useState(
     AuthApi.isAuthenticated()
   );
-
   const NavbarWithRouter = withRouter(Navbar);
 
   return (
@@ -58,5 +54,6 @@ const App = () => {
 export default withRouter(
   connect(null, {
     fetchFavoris,
+    fetchBeers,
   })(App)
 );

@@ -5,16 +5,15 @@ import {
   fetchBeers,
   setSelectedBeer,
   tryAddFavori,
-  tryRemoveFavori,
+  tryRemoveFavori
 } from "../../store/actions";
 import {
-  favorisListNameSelector,
   beersIsLoadingSelector,
   beersListSelector,
-  beersSelectedBeerSelector,
+  beersSelectedBeerSelector, favorisListNameSelector
 } from "../../store/selectors";
-
 import { BeerDetails, BeerList, SearchBar } from "./components";
+
 // eslint-disable-next-line
 const Beers = (props) => {
   return (
