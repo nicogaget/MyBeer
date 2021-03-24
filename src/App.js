@@ -1,8 +1,10 @@
 import { lazy, Suspense, useState } from "react";
 import { connect } from "react-redux";
 import { Redirect, Route, Switch, withRouter } from "react-router-dom";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import { Navbar } from "./components";
-import {PrivateRoute} from "./components";
+import { PrivateRoute } from "./components";
 import AuthApi from "./conf/AuthApi";
 import AuthContext from "./context/AuthContext";
 import LoginPage from "./features/login/LoginPage";
@@ -14,8 +16,6 @@ const LazyFavoris = lazy(() => import("./features/favoris"));
 
 AuthApi.setup();
 
-
-
 const App = () => {
   // componentDidMount() {
   //   this.props.fetchFavoris();
@@ -26,25 +26,31 @@ const App = () => {
 
   const NavbarWithRouter = withRouter(Navbar);
 
- 
-
   return (
-    <AuthContext.Provider value={{
-      isAuthenticated,
-      setIsAuthenticated
-    }}>
+    <AuthContext.Provider
+      value={{
+        isAuthenticated,
+        setIsAuthenticated,
+      }}
+    >
       <div className="App d-flex flex-column">
         <NavbarWithRouter />
         <Suspense fallback={<h1>Loading ...</h1>}>
           <Switch>
             <Route path="/login" component={LoginPage} />
-            <Route path="/register" component={RegisterPage}/>
+            <Route path="/register" component={RegisterPage} />
             <Route path="/beers" component={LazyBeers} />
             <PrivateRoute path="/favoris" component={LazyFavoris} />
             <Redirect to="/beers" />
           </Switch>
         </Suspense>
       </div>
+      <ToastContainer
+        position={toast.POSITION.BOTTOM_RIGHT}
+        autoClose={5000}
+        delay={1000}
+        pauseOnFocusLoss={false}
+      />
     </AuthContext.Provider>
   );
 };

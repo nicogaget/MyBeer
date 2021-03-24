@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import { toast } from "react-toastify";
 import Field from "../components/forms/Field";
 import UsersApi from "../conf/usersApi";
 
@@ -31,6 +32,7 @@ const RegisterPage = ({ history }) => {
     if (user.password !== user.passwordConfirm) {
       apiErrors.passwordConfirm = "Confirmation incorrecte";
       setErrors(apiErrors);
+      toast.error('Les mots de passes ne sont pas identiques 🤔')
       return;
     }
 
@@ -38,6 +40,11 @@ const RegisterPage = ({ history }) => {
       await UsersApi.register(user);
       setErrors({});
       history.replace("/login");
+
+      toast.success(<div>
+        <div className="fs-1">Bravo, vous êtes inscrit !! 😃</div>
+        <div className="fs-2">Maintenant connectez vous pour profiter de MYBEERS</div>
+      </div>);
     } 
 
     catch (error) {
@@ -48,6 +55,7 @@ const RegisterPage = ({ history }) => {
         });
         setErrors(apiErrors);
       }
+      toast.error("Erreur dans votre formulaire 🙄");
     }
   };
 

@@ -1,4 +1,5 @@
 import React, { useContext, useState } from "react";
+import { toast } from "react-toastify";
 import Field from "../../components/forms/Field";
 import AuthApi from "../../conf/AuthApi";
 import AuthContext from "../../context/AuthContext";
@@ -21,9 +22,13 @@ const LoginPage = ({ onLogin, history }) => {
       await AuthApi.authenticate(credentials);
       setError("");
       setIsAuthenticated(true);
+      console.log(toast)
+      toast.success("Vous êtes connecté 😃");
       history.replace("/beers");
     } catch (error) {
       setError("Aucun compte enregistré avec cette adresse email");
+
+      toast.error("une erreur est survenue 🙄");
     }
   };
   return (
