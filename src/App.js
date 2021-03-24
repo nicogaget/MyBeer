@@ -2,7 +2,7 @@ import { lazy, Suspense, useState } from "react";
 import { connect } from "react-redux";
 import { Redirect, Route, Switch, withRouter } from "react-router-dom";
 import { Navbar } from "./components";
-import PrivateRoute from "./components/PrivateRoute";
+import {PrivateRoute} from "./components";
 import AuthApi from "./conf/AuthApi";
 import AuthContext from "./context/AuthContext";
 import LoginPage from "./features/login/LoginPage";
