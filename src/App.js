@@ -6,6 +6,7 @@ import {PrivateRoute} from "./components";
 import AuthApi from "./conf/AuthApi";
 import AuthContext from "./context/AuthContext";
 import LoginPage from "./features/login/LoginPage";
+import RegisterPage from "./features/RegisterPage";
 import { fetchFavoris } from "./store/actions";
 import "./Style/App.scss";
 const LazyBeers = lazy(() => import("./features/beers"));
@@ -37,6 +38,7 @@ const App = () => {
         <Suspense fallback={<h1>Loading ...</h1>}>
           <Switch>
             <Route path="/login" component={LoginPage} />
+            <Route path="/register" component={RegisterPage}/>
             <Route path="/beers" component={LazyBeers} />
             <PrivateRoute path="/favoris" component={LazyFavoris} />
             <Redirect to="/beers" />

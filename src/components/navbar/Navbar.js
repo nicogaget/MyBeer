@@ -13,7 +13,7 @@ const NavBar = ({ history }) => {
   };
 
   return (
-    <header className="navbar navbar-expand-lg navbar-dark bg-dark">
+    <header className="navbar navbar-expand-lg navbar-dark bg-dark ">
       <a className="navbar-brand" href="/">
         TITLE
       </a>
@@ -21,8 +21,8 @@ const NavBar = ({ history }) => {
       <span className="navbar-toggler-icon"></span>
     </button>
     <div className="collapse navbar-collapse"> */}
-      <div className="navbar navbar-expand">
-        <ul className="navbar-nav ml-auto">
+      <div className="navbar navbar-expand mr-auto">
+        <ul className="navbar-nav ">
           <li className="nav-item ">
             <NavLink
               to="/beers"
@@ -43,7 +43,8 @@ const NavBar = ({ history }) => {
               Favoris
             </NavLink>
           </li>
-        </ul>
+        </ul></div>
+        <div className="navbar navbar-expand">
         <ul className="navbar-nav ml-auto">
           {(!isAuthenticated && (
             <>
@@ -62,7 +63,7 @@ const NavBar = ({ history }) => {
                 >
                   Connexion !
                 </NavLink>
-              </li>{" "}
+              </li>
             </>
           )) || (
             <li className="nav-item">
