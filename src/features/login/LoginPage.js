@@ -1,13 +1,14 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import AuthApi from "../../conf/AuthApi";
+import AuthContext from "../../context/AuthContext";
 
-const LoginPage = ({onLogin}) => {
+const LoginPage = ({ onLogin, history }) => {
   const [credentials, setCredentials] = useState({
     username: "",
     password: "",
   });
   const [error, setError] = useState("");
-
+  const { setIsAuthenticated } = useContext(AuthContext);
   const handleChange = ({ currentTarget }) => {
     const { value, name } = currentTarget;
     setCredentials({ ...credentials, [name]: value });
@@ -18,7 +19,8 @@ const LoginPage = ({onLogin}) => {
     try {
       await AuthApi.authenticate(credentials);
       setError("");
-      onLogin(true)
+      setIsAuthenticated(true);
+      history.replace("/beers");
     } catch (error) {
       setError("Aucun compte enregistré avec cette adresse email");
     }
