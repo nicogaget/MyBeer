@@ -4,7 +4,7 @@ import Field from "../../components/forms/Field";
 import AuthApi from "../../services/AuthApi";
 import AuthContext from "../../context/AuthContext";
 
-const LoginPage = ({ onLogin, history }) => {
+const LoginPage = ({ history }) => {
   const [credentials, setCredentials] = useState({
     username: "",
     password: "",
@@ -19,10 +19,10 @@ const LoginPage = ({ onLogin, history }) => {
   const hanldeSubmit = async (event) => {
     event.preventDefault();
     try {
-      await AuthApi.authenticate(credentials);
+      await AuthApi.authenticate(credentials)
       setError("");
       setIsAuthenticated(true);
-      console.log(toast)
+      console.group(localStorage)
       toast.success("Vous êtes connecté 😃");
       history.replace("/beers");
     } catch (error) {
@@ -30,6 +30,7 @@ const LoginPage = ({ onLogin, history }) => {
 
       toast.error("une erreur est survenue 🙄");
     }
+    
   };
   return (
     <>

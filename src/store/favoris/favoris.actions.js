@@ -1,7 +1,7 @@
 import apiFireBaseRequest from "../../services/apiFireBase";
 
 export const REQUEST_FAVORIS = "request favoris";
-export const FETCH_MOVIE = "fetch favoris";
+export const FETCH_FAVORIS = "fetch favoris";
 export const FETCH_FAVORIS_SUCCESS = "fetch favoris success";
 export const FETCH_FAVORIS_ERROR = "fetch favoris error";
 export const SET_SELECTED_FAVORIS = "set selected favoris";
@@ -28,12 +28,10 @@ export const fetchFavorisError = (error) => ({
   error,
 });
 
-export const fetchFavoris = () => async (dispatch) => {
+export const fetchFavoris = () => (dispatch) => {
   dispatch(requestFavoris());
-  const cachedFavoris = await Cache.get("favoris")
-  if(cachedFavoris)return cachedFavoris;
-  return apiFireBaseRequest.fetchFavoris().then(
-    (favoris) => (dispatch(fetchFavorisSuccess(favoris))),
+  return apiFireBaseRequest.fetchFavoris().then( 
+    (favoris) => dispatch(fetchFavorisSuccess(favoris)),
     (error) => dispatch(fetchFavorisError(error))
   );
 };
@@ -65,10 +63,7 @@ export const removeFavoriError = (error) => ({
 });
 
 export const tryRemoveFavori = (name) => (dispatch, getState) => {
-  // const favoris = [...getState().favoris.data];
-  // const index = favoris.findIndex((f) => f.name === name);
-  // favoris.splice(index, 1);
-  const favoris = getState().favoris.data.filter(f => f.name !== name);
+  const favoris = getState().favoris.data.filter((f) => f.name !== name);
   return apiFireBaseRequest.saveFavoris(favoris).then(
     () => dispatch(removeFavoriSuccess(favoris)),
     (error) => dispatch(removeFavoriError(error))

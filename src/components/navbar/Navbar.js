@@ -3,6 +3,7 @@ import { NavLink } from "react-router-dom";
 import { toast } from "react-toastify";
 import AuthApi from "../../services/AuthApi";
 import AuthContext from "../../context/AuthContext";
+import jwt from "jwt-decode";
 
 const NavBar = ({ history }) => {
   const { isAuthenticated, setIsAuthenticated } = useContext(AuthContext);
@@ -16,7 +17,7 @@ const NavBar = ({ history }) => {
   return (
     <header className="navbar navbar-expand-lg navbar-dark bg-dark ">
       <a className="navbar-brand" href="/">
-        TITLE
+        MEMBEERS
       </a>
       {/* <button className="navbar-toggler">
       <span className="navbar-toggler-icon"></span>
@@ -68,15 +69,20 @@ const NavBar = ({ history }) => {
               </li>
             </>
           )) || (
-            <li className="nav-item">
-              <NavLink
-                to="/login"
-                onClick={handleLogout}
-                className="btn btn-danger"
-              >
-                Déconnexion
-              </NavLink>
-            </li>
+            <>
+              <div className="mr-2 d-flex align-items-center">
+                <h4 className="m-0 ">Bonjour {jwt(localStorage.getItem("authToken")).pseudo}</h4>
+              </div>
+              <li className="nav-item">
+                <NavLink
+                  to="/login"
+                  onClick={handleLogout}
+                  className="btn btn-danger"
+                >
+                  Déconnexion
+                </NavLink>
+              </li>
+            </>
           )}
         </ul>
       </div>
